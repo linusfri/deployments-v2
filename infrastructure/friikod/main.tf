@@ -1,0 +1,34 @@
+output "nodes" {
+  value = {
+    friikod = {
+      provider = "hetznercloud"
+      name     = hcloud_server.nixos.name
+      ip       = hcloud_server.nixos.ipv4_address
+      ip6      = hcloud_server.nixos.ipv6_address
+      ssh_key  = var.ssh_pub
+      label    = "friikod"
+      domains = {
+        "friikod"          = "friikod.se"
+        "ladugardlive"     = "ladugardlive.se"
+        "calc-api"         = "calc.friikod.se"
+        "handygleam"       = "handy-gleam.friikod.se"
+        "conversions"      = "conversions.friikod.se"
+        "strapi"           = "strapi.friikod.se"
+        "next"             = "next.friikod.se"
+        "plex"             = "plex.friikod.se"
+        "nextcloud"        = "nextcloud.friikod.se"
+        "jellyfin"         = "jellyfin.friikod.se"
+        "keycloak"         = "keycloak.friikod.se"
+        "elin"             = "elin.friikod.se"
+        "ladugardlive-web" = "web.ladugardlive.se"
+        "github-docs"      = "docs.friikod.se"
+        "plantuml"         = "plantuml.friikod.se"
+        "odoo"             = "odoo.friikod.se"
+      }
+      storagebox = {
+        server   = hcloud_storage_box.backups.server
+        username = hcloud_storage_box.backups.username
+      }
+    }
+  }
+}

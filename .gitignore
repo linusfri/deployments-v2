@@ -1,0 +1,8 @@
+.terraform*
+terraform.tfstate.*
+terraform.tfstate
+!terraform.tfstate.age
+secrets/age-key
+.direnv
+.tokens.*
+!.tokens.hash
