@@ -46,6 +46,14 @@ in
     '';
   };
 
+  check-flake = pkgs.writeShellApplication {
+    name = "check-flake";
+    runtimeInputs = [ pkgs.git pkgs.opentofu ];
+    text = stateWrapper ''
+      nix flake check "$@"
+    '';
+  };
+
   install-system = pkgs.writeShellApplication {
     name = "install-system";
     runtimeInputs = [ pkgs.git pkgs.opentofu ];
@@ -80,7 +88,7 @@ in
   };
 
   tofuAge = pkgs.writeShellApplication {
-    name = "tofuAge";
+    name = "tofuage";
     runtimeInputs = [ pkgs.agenix-rekey pkgs.git pkgs.opentofu ];
     text = stateWrapper ''
       agenix "$@"

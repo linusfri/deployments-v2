@@ -7,20 +7,7 @@ let
   applicationsFolderPath = ../../applications;
 
   applicationFileNames = [
-    "calc-api.nix"
-    "privacy.nix"
-    "mailserver.nix"
-    "nextcloud.nix"
-    "jellyfin.nix"
-    "keycloak.nix"
-    "wordpress.nix"
-    "rclone-r2.nix"
-    "github-docs.nix"
-    "ladugardlive.nix"
-    "handy-gleam.nix"
-    "conversions.nix"
-    "plantuml.nix"
-    "odoo.nix"
+
   ];
 
   mkFullPaths = folderPath: fileNames: map (fileName: folderPath + "/${fileName}") fileNames;
@@ -31,7 +18,6 @@ in
     ./rekey.nix
     ./overlay.nix
     ../../modules/default.nix
-    inputs.mailserver.nixosModules.default
   ]
   ++ mkFullPaths applicationsFolderPath applicationFileNames;
 
@@ -49,5 +35,5 @@ in
 
   # Pinned to the stateVersion the host was originally installed with;
   # do not bump this when upgrading nixpkgs.
-  system.stateVersion = "25.05";
+  system.stateVersion = "26.05";
 }

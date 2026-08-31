@@ -35,6 +35,16 @@
     };
 
     arion.url = "github:hercules-ci/arion";
+
+    lgl-site.url = "git+ssh://git@github.com/linusfri/ladugardLive";
+    strapi.url = "git+ssh://git@github.com/linusfri/strapi_docknix";
+    calc-api.url = "git+ssh://git@github.com/linusfri/calc_api";
+    handy-gleam.url = "git+ssh://git@github.com/linusfri/handy-gleam";
+    conversions.url = "git+ssh://git@github.com/linusfri/conversions";
+    website-for-friends.url = "github:linusfri/website-for-friends";
+    github-docs.url = "git+ssh://git@github.com/linusfri/html";
+
+    mailserver.url = "git+https://gitlab.com/simple-nixos-mailserver/nixos-mailserver.git?ref=nixos-26.05";
   };
 
   outputs =

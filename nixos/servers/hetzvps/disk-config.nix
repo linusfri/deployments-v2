@@ -1,34 +1,9 @@
-{ lib, ... }:
+{ ... }:
 {
-  disko.devices.disk.system = {
-    type = "disk";
-    device = lib.mkDefault "/dev/sda";
-    content = {
-      type = "gpt";
-      partitions = {
-        boot = {
-          size = "1M";
-          type = "EF02";
-        };
-        esp = {
-          size = "512M";
-          type = "EF00";
-          content = {
-            type = "filesystem";
-            format = "vfat";
-            mountpoint = "/boot";
-            mountOptions = [ "umask=0077" ];
-          };
-        };
-        root = {
-          size = "100%";
-          content = {
-            type = "filesystem";
-            format = "ext4";
-            mountpoint = "/";
-          };
-        };
-      };
-    };
-  };
+  # This host predates disko: it was never partitioned/installed through it,
+  # and its real partitions (declared as plain `fileSystems` entries) live in
+  # ./hardware.nix instead. Keep this module a no-op so the generic
+  # `disko.nixosModules.disko` import in flake.nix doesn't generate
+  # `fileSystems`/bootloader config that conflicts with (or overwrites) the
+  # real, already-partitioned disk on this server.
 }

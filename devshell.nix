@@ -107,6 +107,6 @@ pkgs.mkShell {
 
     source set-environment
 
-    echo "Commands: tokens, refresh-infrastructure, install-system, deploy-system, tofuAge"
+    echo "Commands: tokens, refresh-infrastructure, install-system, deploy-system, tofuAge, check-flake"
   '';
 }
