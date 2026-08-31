@@ -116,7 +116,7 @@
         inherit system;
         overlays = [ agenix-rekey.overlays.default ];
       };
-      workflows = import ./scripts/workflow.nix { inherit pkgs; };
+      workflows = import ./scripts/workflow.nix { inherit pkgs lib; };
     in
     {
       inherit deploy nixosConfigurations;

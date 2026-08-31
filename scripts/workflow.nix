@@ -1,6 +1,16 @@
-{ pkgs }:
+{ pkgs, lib, ... }:
 let
   stateWrapper = command: ''
+    PATH=${
+      lib.makeBinPath (
+        with pkgs;
+        [
+          git
+          opentofu
+        ]
+      )
+    }:$PATH
+
     set -euo pipefail
 
     root="$(git rev-parse --show-toplevel 2>/dev/null || pwd)"
@@ -39,7 +49,6 @@ in
 {
   show-infra = pkgs.writeShellApplication {
     name = "show-infra";
-    runtimeInputs = [ pkgs.git pkgs.opentofu ];
     text = stateWrapper ''
       echo "OpenTofu state is available for the lifetime of this command."
       nix eval .#infrastructure.nodes --json | ${pkgs.jq}/bin/jq
@@ -48,7 +57,6 @@ in
 
   check-flake = pkgs.writeShellApplication {
     name = "check-flake";
-    runtimeInputs = [ pkgs.git pkgs.opentofu ];
     text = stateWrapper ''
       nix flake check "$@"
     '';
@@ -56,11 +64,11 @@ in
 
   install-system = pkgs.writeShellApplication {
     name = "install-system";
-    runtimeInputs = [ pkgs.git pkgs.opentofu ];
     text = ''
       host="''${1:?Usage: install-system HOST [TARGET] [NIXOS-ANYWHERE-ARGS...]}"
       shift
-    '' + stateWrapper ''
+    ''
+    + stateWrapper ''
 
       if (( $# > 0 )); then
         target="$1"
@@ -78,18 +86,20 @@ in
 
   deploy-system = pkgs.writeShellApplication {
     name = "deploy-system";
-    runtimeInputs = [ pkgs.git pkgs.opentofu ];
     text = ''
       host="''${1:?Usage: deploy-system HOST [DEPLOY-RS-ARGS...]}"
       shift
-    '' + stateWrapper ''
+    ''
+    + stateWrapper ''
       nix run .#deploy-rs -- ".#$host" "$@"
     '';
   };
 
   tofuAge = pkgs.writeShellApplication {
     name = "tofuage";
-    runtimeInputs = [ pkgs.agenix-rekey pkgs.git pkgs.opentofu ];
+    runtimeInputs = [
+      pkgs.agenix-rekey
+    ];
     text = stateWrapper ''
       agenix "$@"
     '';
