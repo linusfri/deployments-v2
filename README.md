@@ -16,6 +16,14 @@ The OpenTofu backend and provider credentials must already be available in the e
 
 The workflow commands pull the remote state into a temporary, ignored `terraform.tfstate`, temporarily add it to the Git index for pure flake evaluation, and remove it on exit. Never commit this state file.
 
+For the tokens command to work, you need to generate a new age identity and update ```master-identity.nix```.
+```
+age-keygen -o /tmp/new-master.txt
+# note the printed "Public key: age1..." line
+age -p -o secrets/rekeyed/new-master.age /tmp/new-master.txt
+shred -u /tmp/new-master.txt   # or `rm -P`/`rm` if shred unavailable
+```
+
 ## Development shell
 
     nix develop
