@@ -1,12 +1,14 @@
-{ pkgs, ... }:
+{ pkgs, lib, ... }:
 {
+  # Repo-wide fallback DB engine versions. Use mkOptionDefault (priority 1500)
+  # rather than mkDefault (1000) so that service modules with their own
+  # mkDefault package choice (e.g. nixpkgs' nextcloud.nix picking mariadb for
+  # a locally-managed mysql db) win instead of conflicting with this one.
   services.mysql = {
-    enable = true;
-
-    package = pkgs.mysql84;
+    package = lib.mkOptionDefault pkgs.mysql84;
   };
 
   services.postgresql = {
-    package = pkgs.postgresql_18;
+    package = lib.mkOptionDefault pkgs.postgresql_18;
   };
 }

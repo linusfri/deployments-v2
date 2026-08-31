@@ -37,8 +37,8 @@ let
   '';
 in
 {
-  refresh-infrastructure = pkgs.writeShellApplication {
-    name = "refresh-infrastructure";
+  show-infra = pkgs.writeShellApplication {
+    name = "show-infra";
     runtimeInputs = [ pkgs.git pkgs.opentofu ];
     text = stateWrapper ''
       echo "OpenTofu state is available for the lifetime of this command."

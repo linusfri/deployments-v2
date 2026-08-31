@@ -7,7 +7,7 @@ let
   applicationsFolderPath = ../../applications;
 
   applicationFileNames = [
-
+    "schoolity-portal.nix"
   ];
 
   mkFullPaths = folderPath: fileNames: map (fileName: folderPath + "/${fileName}") fileNames;

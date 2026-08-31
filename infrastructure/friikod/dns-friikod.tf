@@ -143,6 +143,15 @@ resource "cloudflare_dns_record" "subdomain-odoo" {
   ttl     = 1
 }
 
+resource "cloudflare_dns_record" "subdomain-schoolity" {
+  zone_id = cloudflare_zone.default.id
+  name    = "schoolity.friikod.se"
+  content = hcloud_server.funktor.ipv4_address
+  type    = "A"
+  proxied = false
+  ttl     = 1
+}
+
 # Mail
 resource "cloudflare_dns_record" "mail-ip4" {
   zone_id = cloudflare_zone.default.id

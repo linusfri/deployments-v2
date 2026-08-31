@@ -38,6 +38,7 @@ output "nodes" {
       ssh_key  = var.ssh_pub
       label    = "funktor"
       domains = {
+        "schoolity" = "schoolity.friikod.se"
       }
     }
   }

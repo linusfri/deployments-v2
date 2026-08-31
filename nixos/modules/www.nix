@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ pkgs, lib, ... }:
 {
   networking.firewall.enable = true;
   networking.firewall.allowedTCPPorts = [
@@ -8,7 +8,7 @@
     465
   ];
 
-  services.nginx = {
+  services.nginx = lib.mkDefault {
     package = pkgs.nginx.override {
       modules = [ pkgs.nginxModules.cache-purge ];
     };
