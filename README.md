@@ -1,4 +1,4 @@
-# nixiform-v2
+# deployments-v2
 
 Minimal NixOS server deployment built around four separate responsibilities:
 
