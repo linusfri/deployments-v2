@@ -8,8 +8,6 @@ Minimal NixOS server deployment built around four separate responsibilities:
 - **deploy-rs** deploys all later NixOS generations.
 - **agenix-rekey** generates, rekeys, and deploys secrets.
 
-No application modules are included. The host imports only `authorized-keys`, `common`, `db`, `virtualisation`, and `www`.
-
 ## Prerequisites
 
 The OpenTofu backend and provider credentials must already be available in the environment. Initialize it once:
@@ -28,13 +26,15 @@ Provisioning credentials are stored in the encrypted token bundle. On the first 
     exit
     nix develop
 
-The generated credential script is ignored by Git and created with mode `0600`. Its hash is checked whenever the development shell starts; rerun `tokens` if the encrypted bundle changes.
+Or if you're using direnv this is done automatically.
+
+The generated credential bash file is checked whenever the development shell starts; rerun `tokens` if the encrypted bundle changes.
 
 No command assumes a host. Omitting the host from installation or deployment fails with usage information.
 
 Inspect parsed node outputs:
 
-    refresh-infrastructure
+    show-infra
 
 ## Provision infrastructure
 
@@ -54,7 +54,7 @@ This infers `root@<node.ip>` from state. An explicit target and extra nixos-anyw
 
     install-system hetzvps root@203.0.113.10 --copy-host-keys
 
-Use `--copy-host-keys` when replacing an existing installation and retaining its SSH host key. For a new host, update `nixos/servers/<host>/ssh-host-key.pub` from `ssh-keyscan`, then run `tofuAge rekey -a` before installing secrets.
+Use `--copy-host-keys` when replacing an existing installation and retaining its SSH host key. For a new host, update `nixos/servers/<host>/ssh-host-key.pub` from `ssh-keyscan`, then run `tofuAge rekey -a` before pushing secrets.
 
 ## Subsequent deployment
 
@@ -80,7 +80,7 @@ Define secrets in an imported NixOS module with `age.secrets.<name>.rekeyFile`. 
 
 1. Add the node to the OpenTofu `terraflake` output.
 2. Create `nixos/servers/<name>/default.nix`, `disk-config.nix`, `hardware.nix`, `rekey.nix`, and `ssh-host-key.pub`.
-3. Ensure the directory name exactly matches the node's `name` in state.
-4. Run `refresh-infrastructure`, then install or deploy with the explicit host name.
+3. Ensure the directory name exactly matches the node's `name` in tofu state.
+4. Run `show-infra`, then install or deploy with the explicit host name.
 
 The flake derives `nixosConfigurations` and `deploy.nodes` from the parsed state; no separate host list is maintained.
