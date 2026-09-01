@@ -14,7 +14,7 @@ in
 
   services.ts1997.laravelSites.${siteName} = {
     enable = true;
-    appName = "Schoolity portal";
+    appName = "Fritidsschema";
     locale = "sv";
     domain = "schema.skagget.se";
     forceWWW = false;

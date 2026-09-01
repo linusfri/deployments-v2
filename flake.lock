@@ -171,11 +171,11 @@
         "nixpkgs": "nixpkgs_6"
       },
       "locked": {
-        "lastModified": 1788196642,
-        "narHash": "sha256-jIbSh1yFPjQlMB4WngJO7wBoPuzfxgmvkca1r13tEq8=",
+        "lastModified": 1788254155,
+        "narHash": "sha256-GZjQewKBX8gAYYNjJJ2DCX61Jv3+JVEF52CmhArxbAU=",
         "owner": "ts1997",
         "repo": "devops-templates",
-        "rev": "ad4aeee0f2dbae9d784785f8c9d6388f3e4a97f8",
+        "rev": "fb393d7baaff6681185e3834629908d8079e59f9",
         "type": "github"
       },
       "original": {
@@ -1074,11 +1074,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1788193683,
-        "narHash": "sha256-fCQmaKgZ9K/Z5ZRVEvls4SoRVzr8NcU68mqEfqA3S08=",
+        "lastModified": 1788249051,
+        "narHash": "sha256-yoS3q5TDvkzWQ4V5N00myp6llilMdo0z1N7H3pSqap8=",
         "ref": "refs/heads/main",
-        "rev": "3e8e0640af95ebd67a5bc37e25ed6e91ebae7572",
-        "revCount": 8,
+        "rev": "50c492b83e834ec99ee9d875744896c35fbb2cb6",
+        "revCount": 9,
         "type": "git",
         "url": "ssh://git@github.com/skaggetse/schoolity-portal"
       },
