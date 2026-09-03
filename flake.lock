@@ -171,11 +171,11 @@
         "nixpkgs": "nixpkgs_6"
       },
       "locked": {
-        "lastModified": 1788254155,
-        "narHash": "sha256-GZjQewKBX8gAYYNjJJ2DCX61Jv3+JVEF52CmhArxbAU=",
+        "lastModified": 1788426027,
+        "narHash": "sha256-7PSzX1egNJY+DrwFQKCwVvkfzM5Mz4L5KLTc3PVkrnw=",
         "owner": "ts1997",
         "repo": "devops-templates",
-        "rev": "fb393d7baaff6681185e3834629908d8079e59f9",
+        "rev": "f6218ec8bb882f7fefeef3c49523fbe4ec11d0db",
         "type": "github"
       },
       "original": {
