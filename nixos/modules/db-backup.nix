@@ -9,9 +9,7 @@ let
 in
 {
   # Declare a job with: services.dbBackup.<name> = { dumpCommand = ...; };
-  # `<name>` is used as both the borgbackup job name and the storage box
-  # repo name, the same way `name` is bound inside e.g.
-  # services.borgbackup.jobs.<name> submodules.
+  # `<name>` is used as both the borgbackup job name and the storage box repo name.
   options.services.dbBackup = lib.mkOption {
     type = lib.types.attrsOf (
       lib.types.submodule {
