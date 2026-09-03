@@ -73,7 +73,8 @@ Additional arguments are forwarded to deploy-rs:
     deploy-system hetzvps --dry-activate
 
 ### Deploy all systems
-```deploy-all```
+
+    deploy-all
 
 This will deploy to all nodes in `deploy.nodes` parsed from tofu state. 
 
