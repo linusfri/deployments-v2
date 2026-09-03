@@ -1074,11 +1074,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1788249051,
-        "narHash": "sha256-yoS3q5TDvkzWQ4V5N00myp6llilMdo0z1N7H3pSqap8=",
+        "lastModified": 1788418703,
+        "narHash": "sha256-ovpSZ4m+bCNRf7TowSwMZo9aotvxCMtH8fQDQYYY5HY=",
         "ref": "refs/heads/main",
-        "rev": "50c492b83e834ec99ee9d875744896c35fbb2cb6",
-        "revCount": 9,
+        "rev": "53826a63561a0f88a537453bcb88109678511195",
+        "revCount": 23,
         "type": "git",
         "url": "ssh://git@github.com/skaggetse/schoolity-portal"
       },
