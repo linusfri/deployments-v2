@@ -14,6 +14,7 @@
     package = lib.mkForce pkgs.mysql84;
   };
 
+  # Pin postgres_18 to make sure that conflicts are easier to spot, if a package bumps its version.
   services.postgresql = {
     package = lib.mkForce pkgs.postgresql_18;
   };
