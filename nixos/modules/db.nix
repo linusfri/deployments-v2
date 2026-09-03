@@ -1,11 +1,17 @@
 { pkgs, lib, ... }:
 {
-  # Repo-wide fallback DB engine versions. Use mkOptionDefault (priority 1500)
-  # rather than mkDefault (1000) so that service modules with their own
-  # mkDefault package choice (e.g. nixpkgs' nextcloud.nix picking mariadb for
-  # a locally-managed mysql db) win instead of conflicting with this one.
+  # Repo-wide DB engine versions.
+  #
+  # NOTE: services.mysql.package must stay mkForce'd to mysql84: hetzvps'
+  # /var/lib/mysql is a MySQL 8.4 datadir (uses #innodb_redo/, no ib_logfile0),
+  # which MariaDB cannot read. nixpkgs' nextcloud.nix sets
+  # `services.mysql.package = lib.mkDefault pkgs.mariadb` when
+  # database.createLocally is used with dbtype=mysql, and mkDefault (1000)
+  # would win over mkOptionDefault (1500), silently switching engines and
+  # breaking mysql.service on deploy. A future migration to MariaDB requires a
+  # logical mysqldump -> wipe datadir -> restore.
   services.mysql = {
-    package = lib.mkOptionDefault pkgs.mysql84;
+    package = lib.mkForce pkgs.mysql84;
   };
 
   services.postgresql = {

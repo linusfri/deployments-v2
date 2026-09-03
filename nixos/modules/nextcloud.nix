@@ -127,7 +127,7 @@ in
       config.objectstore.s3 = {
         enable = true;
         bucket = cfg.s3.bucket;
-        autocreate = false;
+        verify_bucket_exists = false;
         key = cfg.s3.key;
         secretFile = cfg.s3.secretFile;
         hostname = cfg.s3.hostname;

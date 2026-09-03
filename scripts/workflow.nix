@@ -95,6 +95,13 @@ in
     '';
   };
 
+  deploy-all = pkgs.writeShellApplication {
+    name = "deploy-all";
+    text = stateWrapper ''
+      nix run .#deploy-rs -- . "$@"
+    '';
+  };
+
   tofuAge = pkgs.writeShellApplication {
     name = "tofuage";
     runtimeInputs = [

@@ -152,11 +152,11 @@
         "utils": "utils_2"
       },
       "locked": {
-        "lastModified": 1786361680,
-        "narHash": "sha256-IxaZkb9rCGEZ+yGndxKXONeIEcKMzoFUsvLTB5G/caw=",
+        "lastModified": 1788395115,
+        "narHash": "sha256-7sprixDLchHgjQt1yNoc91d0L0lnbd1VUb3OPZpsIJk=",
         "owner": "serokell",
         "repo": "deploy-rs",
-        "rev": "16901271e5b30b591e56f7a84f25f186fb20f3e1",
+        "rev": "a591d4600e8ada8b22489093ebf50337f4d98065",
         "type": "github"
       },
       "original": {
@@ -833,11 +833,11 @@
     },
     "nixpkgs_12": {
       "locked": {
-        "lastModified": 1788181121,
-        "narHash": "sha256-1PaKY8rxqPKgZd0kPJDSM2XHTLtODuo64AcMXXxZJ6U=",
+        "lastModified": 1788428104,
+        "narHash": "sha256-RgeuIaIkNVlOlnNq61AFsf1sztJV0Qq5IO93N3pOwP8=",
         "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "68777210cd7f124b02e334e03cd366117355ab0b",
+        "rev": "6abf2133fb9e677141f0456028bfde31f807b705",
         "type": "github"
       },
       "original": {
@@ -1074,11 +1074,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1788418703,
-        "narHash": "sha256-ovpSZ4m+bCNRf7TowSwMZo9aotvxCMtH8fQDQYYY5HY=",
+        "lastModified": 1788433562,
+        "narHash": "sha256-ZVVoEYsgYODGIGA8Z+pdPy7VbBOkcdnlPjcvv1JBB8c=",
         "ref": "refs/heads/main",
-        "rev": "53826a63561a0f88a537453bcb88109678511195",
-        "revCount": 23,
+        "rev": "efa5b0ed468a3f9311c0a0bc276aa7d2a1e3b35f",
+        "revCount": 25,
         "type": "git",
         "url": "ssh://git@github.com/skaggetse/schoolity-portal"
       },

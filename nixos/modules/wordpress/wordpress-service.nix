@@ -2,6 +2,7 @@
   config,
   pkgs,
   lib,
+  node,
   ...
 }:
 let
@@ -297,9 +298,48 @@ in
                 try_files $uri $uri/ =404;
               '';
             };
+
+            locations."@production" = lib.mkIf (site.assetProxy != "") {
+              extraConfig = ''
+                resolver 8.8.8.8;
+                proxy_ssl_server_name on;
+                proxy_pass ${site.assetProxy};
+              '';
+            };
           };
         }) sites
       );
     };
+
+    systemd.services = lib.mkMerge (
+      lib.mapAttrsToList (name: site: {
+        "${site.appName}-setupCache" = {
+          description = "Creates object-cache.php in content dir for redis to work. Sets up nginx fastcgi cache";
+          serviceConfig = {
+            ExecStart = "${setupCache site}/bin/set-up-cache";
+            Type = "simple";
+          };
+          wantedBy = [ "multi-user.target" ];
+        };
+
+        "${site.appName}-content-dir" = {
+          description = "Copies the project content folder to /var/lib";
+          serviceConfig = {
+            ExecStart = "${setupContentDir site}/bin/setup-content-dir";
+            Type = "simple";
+          };
+          wantedBy = [ "multi-user.target" ];
+        };
+      }) sites
+    );
+
+    age.secrets = lib.mkMerge (
+      lib.mapAttrsToList (name: site: {
+        "${site.appName}-env" = {
+          rekeyFile = ../../servers/${node.name}/secrets/${site.appName}-env.age;
+          generator.script = "passphrase";
+        };
+      }) sites
+    );
   };
 }
