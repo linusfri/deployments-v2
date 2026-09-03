@@ -72,6 +72,11 @@ Additional arguments are forwarded to deploy-rs:
 
     deploy-system hetzvps --dry-activate
 
+### Deploy all systems
+```deploy-all```
+
+This will deploy to all nodes in `deploy.nodes` parsed from tofu state. 
+
 ## Secrets
 
 The host imports both agenix and agenix-rekey. Host-specific configuration is in `nixos/servers/<host>/rekey.nix`.
