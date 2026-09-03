@@ -60,6 +60,12 @@ in
     };
   };
 
+  services.dbBackup.keycloak-postgres = {
+    dumpCommand = pkgs.writeShellScript "dump-keycloak-db" ''
+      exec ${pkgs.util-linux}/bin/runuser -u postgres -- ${config.services.postgresql.package}/bin/pg_dump --dbname=keycloak
+    '';
+  };
+
   age.secrets."keycloakDbPassFile" = {
     rekeyFile = ../servers/${node.name}/secrets/keycloak-db-pass-file.age;
     generator.script = "passphrase";

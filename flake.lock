@@ -504,11 +504,11 @@
         "utils": "utils_3"
       },
       "locked": {
-        "lastModified": 1785956659,
-        "narHash": "sha256-yxVQuS+e84L7U5+WTylG0q4EtAMEUMULkQLBOWzyOTU=",
+        "lastModified": 1788454422,
+        "narHash": "sha256-HR1uGCje+YF8We1GCsSQCmXnOoJEJAlLd2fVWMPk5G4=",
         "ref": "refs/heads/master",
-        "rev": "d47cf469ec2122a5b1e656ebece813778ad1c272",
-        "revCount": 139,
+        "rev": "17c9e95c61c105344912fb228be5a7d74a7458e7",
+        "revCount": 140,
         "type": "git",
         "url": "ssh://git@github.com/linusfri/handy-gleam"
       },
@@ -833,11 +833,11 @@
     },
     "nixpkgs_12": {
       "locked": {
-        "lastModified": 1788428104,
-        "narHash": "sha256-RgeuIaIkNVlOlnNq61AFsf1sztJV0Qq5IO93N3pOwP8=",
+        "lastModified": 1788450220,
+        "narHash": "sha256-lU+Ut8+uBpT8CUMyx0bhFXe+Apa6unLnlbPMSJx+WUE=",
         "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "6abf2133fb9e677141f0456028bfde31f807b705",
+        "rev": "f7988e9d4c6f027ec98c0939ed0f5ed155cbf766",
         "type": "github"
       },
       "original": {
