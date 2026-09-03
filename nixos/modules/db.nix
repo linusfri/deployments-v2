@@ -15,6 +15,6 @@
   };
 
   services.postgresql = {
-    package = lib.mkOptionDefault pkgs.postgresql_18;
+    package = lib.mkForce pkgs.postgresql_18;
   };
 }
