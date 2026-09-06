@@ -108,11 +108,11 @@
         "utils": "utils"
       },
       "locked": {
-        "lastModified": 1780248919,
-        "narHash": "sha256-THygPV5s8Hps2uazxAP1+tPzXm7GtwNFJ7dtaJXh0tk=",
+        "lastModified": 1788681039,
+        "narHash": "sha256-FMbe+7Kwz/LKmUBo/J0oGj353D7kAC5O9deuQDVbc2E=",
         "ref": "refs/heads/master",
-        "rev": "fad2905c81ad8060d98f42471be5de83c667f549",
-        "revCount": 80,
+        "rev": "f4c4b0d308a5b4170aa6ec0592f576009c53a09d",
+        "revCount": 81,
         "type": "git",
         "url": "ssh://git@github.com/linusfri/conversions"
       },
@@ -833,11 +833,11 @@
     },
     "nixpkgs_12": {
       "locked": {
-        "lastModified": 1788450220,
-        "narHash": "sha256-lU+Ut8+uBpT8CUMyx0bhFXe+Apa6unLnlbPMSJx+WUE=",
+        "lastModified": 1788717227,
+        "narHash": "sha256-AVy0n6nj2cZ8aCZ2ISzwyIXl1jKLABhrtqIvmWvnZoU=",
         "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "f7988e9d4c6f027ec98c0939ed0f5ed155cbf766",
+        "rev": "14a5be1e6f129250958d02c5f836dbdd515cce6b",
         "type": "github"
       },
       "original": {
@@ -1074,11 +1074,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1788448982,
-        "narHash": "sha256-fTDlu/xCHCWx4uX6X254mjVkQS+9x7BWLzSe7tJbFS4=",
+        "lastModified": 1788548005,
+        "narHash": "sha256-6FYNVd9toPed1RG3KJ6mmX9qbl+AuxSjf/f24gTNBmE=",
         "ref": "refs/heads/main",
-        "rev": "1d39da608a84d52b58b89d5d4500557c4c7fdeda",
-        "revCount": 32,
+        "rev": "4a88705a10ef3305de9e1030a48773aabd5835b8",
+        "revCount": 34,
         "type": "git",
         "url": "ssh://git@github.com/skaggetse/schoolity-portal"
       },

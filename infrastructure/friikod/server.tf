@@ -24,25 +24,25 @@ resource "hcloud_server" "nixos" {
   }
 }
 
-resource "hcloud_server" "funktor" {
-  name        = "funktor"
-  image       = "ubuntu-24.04"
-  server_type = "cx23"
-  location    = "hel1"
-  backups     = false
-  public_net {
-    ipv4_enabled = true
-    ipv6_enabled = true
-  }
-  ssh_keys = [hcloud_ssh_key.main.id]
-  labels = {
-    "label" : "seed"
-  }
-  lifecycle {
-    ignore_changes  = [ssh_keys, location]
-    prevent_destroy = true
-  }
-}
+# resource "hcloud_server" "funktor" {
+#   name        = "funktor"
+#   image       = "ubuntu-24.04"
+#   server_type = "cx23"
+#   location    = "hel1"
+#   backups     = false
+#   public_net {
+#     ipv4_enabled = true
+#     ipv6_enabled = true
+#   }
+#   ssh_keys = [hcloud_ssh_key.main.id]
+#   labels = {
+#     "label" : "seed"
+#   }
+#   lifecycle {
+#     ignore_changes  = [ssh_keys, location]
+#     prevent_destroy = false
+#   }
+# }
 
 resource "hcloud_rdns" "rdns4" {
   server_id  = hcloud_server.nixos.id

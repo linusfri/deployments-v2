@@ -30,16 +30,16 @@ output "nodes" {
         username = hcloud_storage_box.backups.username
       }
     }
-    funktor = {
-      provider = "hetznercloud"
-      name     = hcloud_server.funktor.name
-      ip       = hcloud_server.funktor.ipv4_address
-      ip6      = hcloud_server.funktor.ipv6_address
-      ssh_key  = var.ssh_pub
-      label    = "funktor"
-      domains = {
-        "schoolity" = "schoolity.friikod.se"
-      }
-    }
+    # funktor = {
+    #   provider = "hetznercloud"
+    #   name     = hcloud_server.funktor.name
+    #   ip       = hcloud_server.funktor.ipv4_address
+    #   ip6      = hcloud_server.funktor.ipv6_address
+    #   ssh_key  = var.ssh_pub
+    #   label    = "funktor"
+    #   domains = {
+    #     "schoolity" = "schoolity.friikod.se"
+    #   }
+    # }
   }
 }

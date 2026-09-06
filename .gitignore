@@ -6,3 +6,4 @@ secrets/age-key
 .direnv
 .tokens.*
 !.tokens.hash
+!.terraform.lock*
