@@ -185,26 +185,6 @@
         "type": "github"
       }
     },
-    "devops-templates_2": {
-      "inputs": {
-        "flake-utils": "flake-utils_4",
-        "nixpkgs": "nixpkgs_13"
-      },
-      "locked": {
-        "lastModified": 1788193113,
-        "narHash": "sha256-UOycy/kNIootJrdGfK9kN241Ae1fxl7VmTUXtYpQUNM=",
-        "owner": "ts1997",
-        "repo": "devops-templates",
-        "rev": "d57faef18aef867d2c08ab91a59832b73e7c635d",
-        "type": "github"
-      },
-      "original": {
-        "owner": "ts1997",
-        "ref": "feat/migrate_to_native_process_manager",
-        "repo": "devops-templates",
-        "type": "github"
-      }
-    },
     "devshell": {
       "inputs": {
         "nixpkgs": [
@@ -382,24 +362,6 @@
         "owner": "numtide",
         "repo": "flake-utils",
         "rev": "c1dfcf08411b08f6b8615f7d8971a2bfa81d5e8a",
-        "type": "github"
-      },
-      "original": {
-        "owner": "numtide",
-        "repo": "flake-utils",
-        "type": "github"
-      }
-    },
-    "flake-utils_4": {
-      "inputs": {
-        "systems": "systems_8"
-      },
-      "locked": {
-        "lastModified": 1731533236,
-        "narHash": "sha256-l0KFg5HjrsfsO/JpG+r7fRrqm12kzFHyUHqHCVpMMbI=",
-        "owner": "numtide",
-        "repo": "flake-utils",
-        "rev": "11707dc2f618dd54ca8739b309ec4fc024de578b",
         "type": "github"
       },
       "original": {
@@ -849,22 +811,6 @@
     },
     "nixpkgs_13": {
       "locked": {
-        "lastModified": 1777275998,
-        "narHash": "sha256-1o8wMQ9t8CMJqf/+lomOc8bkyoDoFYQHDa8FrYfFuAU=",
-        "owner": "NixOS",
-        "repo": "nixpkgs",
-        "rev": "e5dc0645c0d33cd074172d8d9b77aa6533d67ca2",
-        "type": "github"
-      },
-      "original": {
-        "owner": "NixOS",
-        "ref": "release-25.11",
-        "repo": "nixpkgs",
-        "type": "github"
-      }
-    },
-    "nixpkgs_14": {
-      "locked": {
         "lastModified": 1748443479,
         "narHash": "sha256-FQF9ZSzW2KYOJmmmHd554A3BNO1xt5pe6MbohSC2454=",
         "owner": "nixos",
@@ -879,7 +825,7 @@
         "type": "github"
       }
     },
-    "nixpkgs_15": {
+    "nixpkgs_14": {
       "locked": {
         "lastModified": 1770235646,
         "narHash": "sha256-aOmDW3TvFabgoUZCPZAPsO+oUJcM+07MpXlx4MXPfco=",
@@ -1061,35 +1007,13 @@
         "mailserver": "mailserver",
         "nixos-anywhere": "nixos-anywhere",
         "nixpkgs": "nixpkgs_12",
-        "schoolity-portal": "schoolity-portal",
         "strapi": "strapi",
         "website-for-friends": "website-for-friends"
       }
     },
-    "schoolity-portal": {
-      "inputs": {
-        "devops-templates": "devops-templates_2",
-        "nixpkgs": [
-          "nixpkgs"
-        ]
-      },
-      "locked": {
-        "lastModified": 1788548005,
-        "narHash": "sha256-6FYNVd9toPed1RG3KJ6mmX9qbl+AuxSjf/f24gTNBmE=",
-        "ref": "refs/heads/main",
-        "rev": "4a88705a10ef3305de9e1030a48773aabd5835b8",
-        "revCount": 34,
-        "type": "git",
-        "url": "ssh://git@github.com/skaggetse/schoolity-portal"
-      },
-      "original": {
-        "type": "git",
-        "url": "ssh://git@github.com/skaggetse/schoolity-portal"
-      }
-    },
     "strapi": {
       "inputs": {
-        "nixpkgs": "nixpkgs_14",
+        "nixpkgs": "nixpkgs_13",
         "utils": "utils_4"
       },
       "locked": {
@@ -1107,21 +1031,6 @@
       }
     },
     "systems": {
-      "locked": {
-        "lastModified": 1681028828,
-        "narHash": "sha256-Vy1rq5AaRuLzOxct8nz4T6wlgyUR7zLU309k9mBC768=",
-        "owner": "nix-systems",
-        "repo": "default",
-        "rev": "da67096a3b9bf56a91d16901293e51ba5b49a27e",
-        "type": "github"
-      },
-      "original": {
-        "owner": "nix-systems",
-        "repo": "default",
-        "type": "github"
-      }
-    },
-    "systems_10": {
       "locked": {
         "lastModified": 1681028828,
         "narHash": "sha256-Vy1rq5AaRuLzOxct8nz4T6wlgyUR7zLU309k9mBC768=",
@@ -1354,7 +1263,7 @@
     },
     "utils_4": {
       "inputs": {
-        "systems": "systems_9"
+        "systems": "systems_8"
       },
       "locked": {
         "lastModified": 1731533236,
@@ -1372,7 +1281,7 @@
     },
     "utils_5": {
       "inputs": {
-        "systems": "systems_10"
+        "systems": "systems_9"
       },
       "locked": {
         "lastModified": 1731533236,
@@ -1391,7 +1300,7 @@
     "website-for-friends": {
       "inputs": {
         "nix-filter": "nix-filter_2",
-        "nixpkgs": "nixpkgs_15",
+        "nixpkgs": "nixpkgs_14",
         "utils": "utils_5"
       },
       "locked": {

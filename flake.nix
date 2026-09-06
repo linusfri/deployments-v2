@@ -43,10 +43,6 @@
     conversions.url = "git+ssh://git@github.com/linusfri/conversions";
     website-for-friends.url = "github:linusfri/website-for-friends";
     github-docs.url = "git+ssh://git@github.com/linusfri/html";
-    schoolity-portal = {
-      url = "git+ssh://git@github.com/skaggetse/schoolity-portal";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
 
     mailserver.url = "git+https://gitlab.com/simple-nixos-mailserver/nixos-mailserver.git?ref=nixos-26.05";
 
