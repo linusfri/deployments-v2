@@ -13,7 +13,6 @@ let
     "nextcloud.nix"
     "jellyfin.nix"
     "keycloak.nix"
-    "wordpress.nix"
     "rclone-r2.nix"
     "github-docs.nix"
     "ladugardlive.nix"
