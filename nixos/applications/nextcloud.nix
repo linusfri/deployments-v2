@@ -20,6 +20,12 @@
     };
   };
 
+  services.dbBackup.nextcloud-db = {
+    dumpCommand = pkgs.writeShellScript "dump-nextcloud-db" ''
+      exec ${config.services.mysql.package}/bin/mysqldump -u root nextcloud
+    '';
+  };
+
   age.secrets.nextcloudAdminPass = {
     rekeyFile = ../servers/${node.name}/secrets/nextcloud_admin_pass.age;
     generator.script = "passphrase";
