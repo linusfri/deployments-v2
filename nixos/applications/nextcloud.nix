@@ -1,6 +1,7 @@
 {
   config,
   node,
+  pkgs,
   ...
 }:
 {
@@ -8,6 +9,7 @@
     enable = true;
     hostName = node.domains.nextcloud;
     adminpassFile = config.age.secrets.nextcloudAdminPass.path;
+    package = pkgs.nextcloud35;
 
     s3 = {
       bucket = "nextcloudbucket";
@@ -27,6 +29,4 @@
     rekeyFile = ../servers/${node.name}/secrets/cloudflares3_secret_key.age;
     generator.script = "passphrase";
   };
-
-  
 }

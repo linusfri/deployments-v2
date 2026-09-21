@@ -15,7 +15,7 @@ in
 
       package = lib.mkOption {
         type = types.package;
-        default = pkgs.nextcloud33;
+        default = pkgs.nextcloud35;
         description = "The Nextcloud package to use.";
       };
 
@@ -109,11 +109,9 @@ in
       fastcgiTimeout = 300;
       extraApps = {
         inherit (cfg.package.packages.apps)
-          news
           contacts
           calendar
           tasks
-          onlyoffice
           deck
           polls
           spreed
