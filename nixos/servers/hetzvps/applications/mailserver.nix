@@ -12,7 +12,7 @@
 
       # A list of all login accounts. To create the password hashes, use
       # nix-shell -p mkpasswd --run 'mkpasswd -sm bcrypt'
-      loginAccounts = {
+      accounts = {
         "linus@friikod.se" = {
           hashedPasswordFile = config.age.secrets.linusPass.path;
         };
@@ -38,15 +38,15 @@
     };
 
     age.secrets.linusPass = {
-      rekeyFile = ../servers/${node.name}/secrets/linus_mail_pass.age;
+      rekeyFile = ../secrets/linus_mail_pass.age;
       generator.script = "passphrase";
     };
     age.secrets.carroPass = {
-      rekeyFile = ../servers/${node.name}/secrets/carro_mail_pass.age;
+      rekeyFile = ../secrets/carro_mail_pass.age;
       generator.script = "passphrase";
     };
     age.secrets.handymanPass = {
-      rekeyFile = ../servers/${node.name}/secrets/handyman_mail_pass.age;
+      rekeyFile = ../secrets/handyman_mail_pass.age;
       generator.script = "passphrase";
     };
   };

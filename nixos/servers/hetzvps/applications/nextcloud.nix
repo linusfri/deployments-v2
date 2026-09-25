@@ -27,12 +27,12 @@
   };
 
   age.secrets.nextcloudAdminPass = {
-    rekeyFile = ../servers/${node.name}/secrets/nextcloud_admin_pass.age;
+    rekeyFile = ../secrets/nextcloud_admin_pass.age;
     generator.script = "passphrase";
   };
 
   age.secrets.cloudflares3SecretKey = {
-    rekeyFile = ../servers/${node.name}/secrets/cloudflares3_secret_key.age;
+    rekeyFile = ../secrets/cloudflares3_secret_key.age;
     generator.script = "passphrase";
   };
 }

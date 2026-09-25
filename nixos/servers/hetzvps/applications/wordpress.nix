@@ -5,7 +5,7 @@
   ...
 }:
 {
-  imports = [ ../modules/wordpress/wordpress-service.nix ];
+  imports = [ ../../../modules/wordpress/wordpress-service.nix ];
 
   services.linusfri.wordpress.sites = {
     elin = {

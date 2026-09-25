@@ -4,7 +4,7 @@
   ...
 }:
 let
-  applicationsFolderPath = ../../applications;
+  applicationsFolderPath = ./applications;
 
   applicationFileNames = [
   ];

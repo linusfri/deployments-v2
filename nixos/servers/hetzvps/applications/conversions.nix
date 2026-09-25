@@ -6,18 +6,28 @@
   ...
 }:
 let
-  port = 8000;
-  appName = "handygleam";
+  port = 8080;
+  appName = "conversions";
 
   envFile = config.age.secrets."${appName}_environment".path;
+
+  conversionsInit = pkgs.writeShellScriptBin "conversions-init" ''
+    echo "Importing initial data..."
+
+    psql -U postgres -v data_path="${pkgs.conversions}/data" -d ${appName} < ${pkgs.conversions}/db/init/init.sql
+  '';
 
   startApp = pkgs.writeShellScriptBin "start-app" ''
     set -a
     source ${envFile}
+    BACKEND_APP_URL=${node.domains.conversions}
+    FRONTEND_API_URL=${node.domains.conversions}
+    STATIC_UPLOAD_PATH=${home}/static
+    STATIC_SERVE_PATH=/static
     PORT=${toString port}
     PGHOST="/run/postgresql"
 
-    ${pkgs.handygleam}/bin/handygleam
+    ${pkgs.conversions}/bin/conversions
   '';
 
   home = "/var/lib/${appName}";
@@ -29,17 +39,24 @@ in
     home = home;
     openssh.authorizedKeys.keys = authorizedKeys;
     createHome = true;
-    isSystemUser = true;
+    isNormalUser = true;
+    packages = [ conversionsInit ];
   };
 
   users.extraGroups."${appName}" = {
     name = appName;
   };
 
-  users.users."nginx".extraGroups = [ "handygleam" ];
+  systemd.tmpfiles.rules = [
+    "d ${home}/static 0755 ${appName} ${appName} -"
+    "d ${home}/data 0755 ${appName} ${appName} -"
+  ];
+
+
+  users.users."nginx".extraGroups = [ "conversions" ];
 
   services.nginx = {
-    virtualHosts."${node.domains.handygleam}" = {
+    virtualHosts."${node.domains.conversions}" = {
       enableACME = true;
       forceSSL = true;
       locations."/" = {
@@ -83,9 +100,21 @@ in
 
     script = ''
       export DATABASE_URL="postgres://${appName}@/${appName}?host=/run/postgresql&sslmode=disable"
-      ${pkgs.dbmate}/bin/dbmate --migrations-dir ${pkgs.handygleam}/db/migrations up
+      ${pkgs.dbmate}/bin/dbmate --migrations-dir ${pkgs.conversions}/db/migrations up
     '';
 
+    wantedBy = [ "multi-user.target" ];
+  };
+
+  systemd.services."${appName}-frontend" = {
+    enable = true;
+    description = "Copy ${appName} frontend static files to ${home}/static";
+    serviceConfig = {
+      Type = "oneshot";
+    };
+    script = ''
+      cp -rT ${pkgs.conversions-frontend}/ ${home}/static
+    '';
     wantedBy = [ "multi-user.target" ];
   };
 
@@ -105,7 +134,7 @@ in
   };
 
   age.secrets."${appName}_environment" = {
-    rekeyFile = (../servers/${node.name}/secrets/${appName} + ".age");
+    rekeyFile = (../secrets/${appName} + ".age");
     generator.script = "passphrase";
     owner = appName;
     group = appName;
