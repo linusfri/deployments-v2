@@ -16,12 +16,37 @@ The OpenTofu backend and provider credentials must already be available in the e
 
 The workflow commands pull the remote state into a temporary, ignored `terraform.tfstate`, temporarily add it to the Git index for pure flake evaluation, and remove it on exit. Never commit this state file.
 
-For the tokens command to work, you need to generate a new age identity and update ```master-identity.nix```.
+### Secret access
+
+Repo secrets are encrypted to every public key in `secrets/master-identity.nix`. You decrypt with your own SSH key: `.envrc` sets `AGE_IDENTITY` to the first `~/.ssh/*.pub` key listed there (set `AGE_IDENTITY` yourself to override). Use a key without a passphrase, otherwise age prompts once per secret. `.envrc` also passes your `gh auth token` to Nix for GitHub flake inputs.
+
+`secrets/rekeyed/master.age` is a passphrase-protected break-glass key. Its `age1...` public key must always stay in `master-identity.nix`, otherwise `update-masterkeys` drops it.
+
+#### Changing recipients
+
+Edit the list in `secrets/master-identity.nix` (`"<type> <base64>"`, no comment), then re-encrypt everything with an identity that can already decrypt. If none of your SSH keys can decrypt yet, decrypt `master.age` first (one passphrase prompt):
+
 ```
-age-keygen -o /tmp/new-master.txt
-# note the printed "Public key: age1..." line
-age -p -o secrets/rekeyed/new-master.age /tmp/new-master.txt
-shred -u /tmp/new-master.txt   # or `rm -P`/`rm` if shred unavailable
+master="$(mktemp)"
+age -d secrets/rekeyed/master.age > "$master"
+export AGE_IDENTITY="$master"
+```
+
+Then re-encrypt host secrets and the token bundle (the bundle is not attached to any host, so `update-masterkeys` doesn't cover it):
+
+```
+tofuage update-masterkeys
+tofuage rekey -a
+tofuage edit -f -i <(age -d -i "$AGE_IDENTITY" secrets/tofu-tokens/tokens.json.age) secrets/tofu-tokens/tokens.json.age
+```
+
+If you used `master.age`, clean up and switch back to your own key:
+
+```
+rm -f "$master"
+unset AGE_IDENTITY master
+direnv reload
+tokens   # verifies your own key works
 ```
 
 ## Development shell
@@ -62,7 +87,7 @@ This infers `root@<node.ip>` from state. An explicit target and extra nixos-anyw
 
     install-system hetzvps root@203.0.113.10 --copy-host-keys
 
-Use `--copy-host-keys` when replacing an existing installation and retaining its SSH host key. For a new host, update `nixos/servers/<host>/ssh-host-key.pub` from `ssh-keyscan`, then run `tofuAge rekey -a` before pushing secrets.
+Use `--copy-host-keys` when replacing an existing installation and retaining its SSH host key. For a new host, update `nixos/servers/<host>/ssh-host-key.pub` from `ssh-keyscan`, then run `tofuage rekey -a` before pushing secrets.
 
 ## Subsequent deployment
 

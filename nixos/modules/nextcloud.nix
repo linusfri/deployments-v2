@@ -79,6 +79,7 @@ in
     services.nextcloud = {
       enable = true;
       package = cfg.package;
+      phpPackage = pkgs.php84;
       database = {
         createLocally = true; # Uses socket authentication
       };

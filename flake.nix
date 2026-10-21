@@ -120,24 +120,7 @@
 
       agenix-rekey = agenix-rekey.configure {
         userFlake = self;
-        nixosConfigurations = self.nixosConfigurations // {
-          tofuTokens = lib.nixosSystem {
-            inherit system;
-            modules = [
-              agenix.nixosModules.default
-              agenix-rekey.nixosModules.default
-              {
-                age.rekey = {
-                  hostPubkey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIAf9Wqvahm9Fm2twattmjSccCLsqpqMHrIft868NWaAd";
-                  masterIdentities = import ./secrets/master-identity.nix;
-                  storageMode = "local";
-                  localStorageDir = ./secrets/rekeyed/tofu-tokens;
-                };
-                age.secrets.tokens.rekeyFile = ./secrets/tofu-tokens/tokens.json.age;
-              }
-            ];
-          };
-        };
+        inherit (self) nixosConfigurations;
         agePackage = p: p.age;
       };
 

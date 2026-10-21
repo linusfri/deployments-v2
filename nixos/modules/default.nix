@@ -6,6 +6,7 @@
     ./db.nix
     ./db-backup.nix
     ./nextcloud.nix
+    ./php.nix
     ./virtualisation.nix
     ./www.nix
   ];

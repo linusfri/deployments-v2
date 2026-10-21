@@ -13,7 +13,8 @@ let
       pkgs.jq
     ];
     text = ''
-      tokens_json=$(age -d -i "$AGE_KEY" "$SECRETS")
+      : "''${AGE_IDENTITY:?AGE_IDENTITY is not set; see .envrc}"
+      tokens_json=$(age -d -i "$AGE_IDENTITY" "$SECRETS")
 
       # Format: "json_key:ENV_VAR_NAME"
       # The selector in the json file comes first
@@ -42,43 +43,6 @@ let
       sha256sum "$SECRETS" | cut -d' ' -f1 > "$ROOT_DIR/.tokens.hash"
 
       echo "Tokens exported to .tokens.sh"
-    '';
-  };
-
-  unlockMasterIdentity = pkgs.writeShellApplication {
-    name = "unlock-master-identity";
-    runtimeInputs = [
-      pkgs.age
-      pkgs.coreutils
-    ];
-    text = ''
-      # Decrypts secrets/rekeyed/master.age (passphrase-protected) into a
-      # per-user cache file on first use, then just reuses it afterwards, so
-      # you only enter the passphrase once per cache lifetime instead of once per secret.
-
-      cache_dir="''${TMPDIR:-/tmp}/agenix-master-$(id -u)"
-      cache_file="$cache_dir/identity"
-
-      if [[ -s "$cache_file" ]]; then
-        printf '%s' "$cache_file"
-        exit 0
-      fi
-
-      mkdir -p "$cache_dir"
-      chmod 700 "$cache_dir"
-      age -d -o "$cache_file" "$ROOT_DIR/secrets/rekeyed/master.age" >&2
-      chmod 600 "$cache_file"
-      printf '%s' "$cache_file"
-    '';
-  };
-
-  lockMasterIdentity = pkgs.writeShellApplication {
-    name = "lock-master-identity";
-    runtimeInputs = [ pkgs.coreutils ];
-    text = ''
-      cache_dir="''${TMPDIR:-/tmp}/agenix-master-$(id -u)"
-      rm -rf "$cache_dir"
-      echo "Cleared cached master identity."
     '';
   };
 
@@ -127,6 +91,7 @@ pkgs.mkShell {
   packages = (builtins.attrValues workflows) ++ [
     pkgs.age
     pkgs.agenix-rekey
+    pkgs.gh
     pkgs.git
     pkgs.jq
     pkgs.opentofu
@@ -135,14 +100,11 @@ pkgs.mkShell {
     setEnvironment
     fetchRcloneConfig
     tokens
-    unlockMasterIdentity
-    lockMasterIdentity
   ];
 
   shellHook = ''
     export ROOT_DIR="$PWD"
     export SECRETS="$ROOT_DIR/secrets/tofu-tokens/tokens.json.age"
-    export AGE_KEY="$ROOT_DIR/secrets/rekeyed/master.age"
 
     source set-environment
 
