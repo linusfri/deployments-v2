@@ -14,7 +14,6 @@ let
     "jellyfin.nix"
     "keycloak.nix"
     "rclone-r2.nix"
-    "github-docs.nix"
     "ladugardlive.nix"
     "handy-gleam.nix"
     "conversions.nix"
